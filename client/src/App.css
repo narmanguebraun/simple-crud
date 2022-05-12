@@ -1,3 +1,8 @@
+* {
+  box-sizing:border-box;
+  padding:0;
+  margin:0;
+}
 .App {
   display:flex;
   flex-direction:column;
@@ -15,12 +20,22 @@
 .information input {
   width:300px;
   margin:5px 0 0;
+  height:30px;
 }
 
-.information button { 
+button { 
   width:300px;
   margin:15px 0 0;
+  height:30px;
 }
-.information button:hover { 
+button:hover { 
   cursor:pointer;
+}
+
+.employees {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  background:#c6c6c6;
 }

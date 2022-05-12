@@ -1,4 +1,5 @@
 import './App.css';
+import * as React from 'react';
 import { useState } from 'react';
 import Axios from 'axios';
 
@@ -9,6 +10,8 @@ function App() {
   const [country, setCountry] = useState('');
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
+
+  const [employeeList, setEmployeeList] = useState([]);
 
   const addEmployee = () => {
     Axios.post('http://localhost:3001/create', {
@@ -21,6 +24,12 @@ function App() {
       console.log('success');
     });
   };
+
+  const getEmployees = () => {
+    Axios.get('http://localhost:3001/employees').then((response) => {
+      console.log(response);
+    });
+  }
 
   return (
     <div className="App">
@@ -61,6 +70,9 @@ function App() {
           }} 
         />
         <button onClick={addEmployee}>Add employee</button>
+      </div>
+      <div className="employees">
+        <button onClick={getEmployees}>Show employees</button>
       </div>
     </div>
   );
