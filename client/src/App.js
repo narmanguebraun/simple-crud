@@ -48,7 +48,9 @@ function App() {
       id: id
     }).then(
       (response) => {
-        alert("update");
+        setEmployeeList(employeeList.map((val) => {
+          return val.id == id ?  {id: val.id, name: val.name, age: val.age, country: val.country, position: val.position, wage: newWage} : val
+        }))
       }
     );
   };
