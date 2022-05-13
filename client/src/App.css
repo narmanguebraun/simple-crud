@@ -39,3 +39,7 @@ button:hover {
   width:100%;
   background:#c6c6c6;
 }
+.employee {
+  display:flex;
+  flex-direction:column;
+}

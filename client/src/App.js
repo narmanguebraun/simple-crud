@@ -11,6 +11,8 @@ function App() {
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
 
+  const [newWage, setNewWage] = useState(0);
+
   const [employeeList, setEmployeeList] = useState([]);
 
   const addEmployee = () => {
@@ -21,14 +23,15 @@ function App() {
       position: position,
       wage: wage
     }).then(() => {
-      setEmployeeList([...employeeList, 
+      setEmployeeList([
+        ...employeeList, 
         {
           name: name,
           age: age,
           country: country,
           position: position,
           wage: wage
-        }
+        },
       ]); 
     });
   };
@@ -38,6 +41,17 @@ function App() {
       setEmployeeList(response.data); 
     });
   }
+
+  const updateEmployeeWage = () => {
+    Axios.put('http://localhost:3001/update', {
+      wage: newWage,
+      id: id
+    }).then(
+      (response) => {
+        alert("update");
+      }
+    );
+  };
 
   return (
     <div className="App">
@@ -83,13 +97,25 @@ function App() {
         <button onClick={getEmployees}>Show employees</button>
         {employeeList.map((val, key) => {
           return (
-            <tr className="employee">
-              <td>val.name</td>
-              <td>val.age</td>
-              <td>val.country</td>
-              <td>val.position</td>
-              <td>val.wage</td>
-            </tr>
+            <div className="employee">
+              <div>
+                <h3>val.name</h3>
+                <h3>val.age</h3>
+                <h3>val.country</h3>
+                <h3>val.position</h3>
+                <h3>val.wage</h3>
+              </div>
+              <div>
+                <input 
+                  type="text" 
+                  placeholder="2000..." 
+                  onChange={(event) => {
+                    setNewWage(event.target.value);
+                  }} 
+                />
+                <button onClick={() => {updateEmployeeWage(val.id)}}>Update</button>
+              </div>
+            </div>
           );
         })}
       </div>
